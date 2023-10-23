@@ -2,11 +2,17 @@ from models.cliente import Cliente, NCliente
 
 class View:
 
-  @classmethod
-  def cliente_inserir(cls, nome, email, fone):
+  def cliente_inserir(nome, email, fone):
     cliente = Cliente(0, nome, email, fone)
     NCliente.inserir(cliente)
 
-  @classmethod
-  def cliente_listar(cls):
+  def cliente_listar():
     return NCliente.listar()
+
+  def cliente_atualizar(id, nome, email, fone):
+    cliente = Cliente(id, nome, email, fone)
+    NCliente.atualizar(cliente)
+
+  def cliente_excluir(id):
+    cliente = Cliente(id, "", "", "")
+    NCliente.excluir(cliente)
