@@ -1,1 +1,1 @@
-[{"_Cliente__id": 1, "_Cliente__nome": "cliente_um", "_Cliente__email": "cliente_um@ifrn.edu.br", "_Cliente__fone": "912345678"}, {"_Cliente__id": 2, "_Cliente__nome": "cliente_dois", "_Cliente__email": "cliente_dois@ifrn.edu.br", "_Cliente__fone": "987654321"}]
+[{"_Cliente__id": 1, "_Cliente__nome": "admin", "_Cliente__email": "admin", "_Cliente__fone": "0000", "_Cliente__senha": "admin"}, {"_Cliente__id": 2, "_Cliente__nome": "matheus", "_Cliente__email": "matheus@email.com", "_Cliente__fone": "988776655", "_Cliente__senha": "1234"}]
