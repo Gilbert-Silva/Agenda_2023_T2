@@ -47,13 +47,17 @@ class View:
     return NServico.listar_id(id)
 
   def servico_inserir(descricao, valor, duracao):
+    if valor < 0: raise ValueError("Valor inválido")
+    if duracao <= 0: raise ValueError("Duração inválida")
     NServico.inserir(Servico(0, descricao, valor, duracao))
 
   def servico_atualizar(id, descricao, valor, duracao):
+    if valor < 0: raise ValueError("Valor inválido")
+    if duracao <= 0: raise ValueError("Duração inválida")
     NServico.atualizar(Servico(id, descricao, valor, duracao))
 
   def servico_excluir(id):
-    NServico.excluir(Servico(id, "", "", ""))
+    NServico.excluir(Servico(id, "", 0, 10))
 
   def servico_reajustar(percentual):
     for servico in View.servico_listar():    

@@ -27,10 +27,13 @@ class ManterServicoUI:
     valor = st.text_input("Informe o valor (R$)")
     duracao = st.text_input("Informe a duração (min)")
     if st.button("Inserir"):
-      View.servico_inserir(descricao, float(valor), int(duracao))
-      st.success("Serviço inserido com sucesso")
-      time.sleep(2)
-      st.rerun()
+      try:
+        View.servico_inserir(descricao, float(valor), int(duracao))
+        st.success("Serviço inserido com sucesso")
+        time.sleep(2)
+        st.rerun()
+      except:
+        st.error("Valor ou duração tem valores inválidos!")  
 
   def atualizar():
     servicos = View.servico_listar()
