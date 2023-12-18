@@ -1,4 +1,5 @@
 import json
+from models.modelo import Modelo
 
 class Servico:
   def __init__(self, id, descricao, valor, duracao):
@@ -32,7 +33,25 @@ class Servico:
     return f"{self.__id} - {self.__descricao} - {self.__valor:.2f} - {self.__duracao} min"
 
 
-class NServico:
+class NServico(Modelo):
+  @classmethod
+  def abrir(cls):
+    cls.objetos = []
+    try:
+      with open("servicos.json", mode="r") as arquivo:
+        servicos_json = json.load(arquivo)
+        for obj in servicos_json:
+          aux = Servico(obj["_Servico__id"], obj["_Servico__descricao"], obj["_Servico__valor"], obj["_Servico__duracao"])
+          cls.objetos.append(aux)
+    except FileNotFoundError:
+      pass
+
+  @classmethod
+  def salvar(cls):
+    with open("servicos.json", mode="w") as arquivo:
+      json.dump(cls.objetos, arquivo, default=vars)
+
+class NServico2:
   __servicos = []
 
   @classmethod

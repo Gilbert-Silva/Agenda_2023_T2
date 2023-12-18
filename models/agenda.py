@@ -1,5 +1,6 @@
 import json
 import datetime
+from models.modelo import Modelo
 
 class Agenda:
   def __init__(self, id, data, confirmado, id_cliente, id_servico):
@@ -38,7 +39,30 @@ class Agenda:
       'id_servico': self.__id_servico}
 
 
-class NAgenda:
+class NAgenda(Modelo):
+  @classmethod
+  def abrir(cls):
+    cls.objetos = []
+    try:
+      with open("agendas.json", mode="r") as arquivo:
+        agendas_json = json.load(arquivo)
+        for obj in agendas_json:
+          aux = Agenda(
+            obj["id"],
+            datetime.datetime.strptime(obj["data"], "%d/%m/%Y %H:%M"),
+            obj["confirmado"], obj["id_cliente"], obj["id_servico"])
+          cls.objetos.append(aux)
+    except FileNotFoundError:
+      pass
+
+  @classmethod
+  def salvar(cls):
+    with open("agendas.json", mode="w") as arquivo:
+      json.dump(cls.objetos, arquivo, default=Agenda.to_json)
+
+
+
+class NAgenda2:
   __agendas = []
 
   @classmethod
